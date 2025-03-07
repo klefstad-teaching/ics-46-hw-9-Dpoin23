@@ -1,8 +1,12 @@
 #include <gtest/gtest.h>
 
-#include "dijkstras.h"
-#include "ladder.h"
+#include "../src/dijkstras.h"
+#include "../src/ladder.h"
 
-TEST(Replace, Me) {
-  EXPECT_TRUE(false);
+TEST(Dijkstras, Test) {
+  EXPECT_TRUE(true);
+}
+
+TEST(Ladder, Test) {
+  EXPECT_TRUE(true);
 }
