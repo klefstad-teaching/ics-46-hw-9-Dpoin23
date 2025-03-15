@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <fstream>
 #include <queue>
 #include <set>
@@ -18,3 +19,5 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 void load_words(set<string> & word_list, const string& file_name);
 void print_word_ladder(const vector<string>& ladder);
 void verify_word_ladder();
+int find_difference(size_t length, const string& word1, const string& word2);
+int find_difference_different_lengths(const string& shorter, const string& longer);
