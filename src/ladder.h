@@ -7,6 +7,7 @@
 #include <string>
 #include <cmath>
 #include <cassert>
+#include "../src/dijkstras.h"
 
 using namespace std;
 

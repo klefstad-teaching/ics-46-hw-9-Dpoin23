@@ -17,7 +17,11 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 }
 
 void load_words(set<string> & word_list, const string& file_name) {
-
+    std::ifstream in(file_name);
+    string word;
+    while (in >> word)
+        word_list.insert(word);
+    in.close();
 }
 
 void print_word_ladder(const vector<string>& ladder) {
