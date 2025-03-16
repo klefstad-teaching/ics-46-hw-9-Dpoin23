@@ -74,7 +74,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
         error(begin_word, end_word, "Begin and end are the same.");
 
     queue<vector<string>> lq;
-    lq.push(begin_word);
+    lq.push({begin_word});
 
     set<string> visited;
     visited.insert(begin_word);
