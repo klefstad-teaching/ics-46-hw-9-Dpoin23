@@ -19,7 +19,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     for (int i = 1; i <= len2; ++i) {
         for (int j = 1; j <= len1; ++j) {
             if (str1[i-1] == str2[j-i])
-                continue
+                continue;
             else {
                 ++cost;
             }
