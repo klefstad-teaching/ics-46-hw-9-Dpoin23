@@ -5,7 +5,26 @@ void error(string word1, string word2, string msg) {
 }
 
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
-    
+    int len1 = str1.length();
+    int len2 = str2.length();
+    if (abs(len1 - len2) > d) return false;
+
+    vector<vector<int>> dp(len1 + vector<int>(len2 + 1, 0));
+
+    for (int i = 0; i <= len2; ++i) dp[i][0] = i;
+    for (int j = 0; j <= len2; ++j) dp[0][j] = j;
+
+    for (int i = 1; i <= len1; ++i) {
+        for (int j = 1; j <= len2; ++j) {
+            if (str1[i-1] == str2[j-i])
+                dp[i][j] = dp[i-1][j-1];
+            else {
+                dp[i][j] = 1 + min({dp[i-1][j], dp[i][j-1], dp[i-1][j-1]});
+            }
+        }
+    }
+
+    return dp[len1][len2] <= d;
 }
 
 bool is_adjacent(const string& word1, const string& word2) {
@@ -52,7 +71,7 @@ int find_difference_different_lengths(const string& shorter, const string& longe
 
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
     if (begin_word == end_word) 
-        Error(begin_word, end_word, "Begin and end are the same.");
+        error(begin_word, end_word, "Begin and end are the same.");
 
     queue<vector<string>> lq;
     lq.push(begin_word);
