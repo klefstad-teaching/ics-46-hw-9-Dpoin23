@@ -18,7 +18,8 @@ bool is_adjacent(const string& word1, const string& word2) {
         return find_difference_different_lengths(word2, word1) == 1;
     } else if (str2len == str1len + 1) { // word2 longer
         return find_difference_different_lengths(word1, word2) == 1;
-    } // differ by two or more letters
+    } 
+    // differ by two or more letters
     return false;
 }
 
