@@ -9,7 +9,7 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     priority_queue<Node, vector<Node>, greater<Node>> pq;
 
     distances[source] = 0;
-    pq.push({0. source});
+    pq.push({0, source});
 
     while (!pq.empty()) {
         int current = pq.top().first;
