@@ -14,14 +14,15 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     for (int i = 0; i <= len1; ++i) dp[i][0] = i;
     for (int j = 0; j <= len2; ++j) dp[0][j] = j;
 
-    for (int i = 1; i <= len2; ++i) {
-        for (int j = 1; j <= len1; ++j) {
-            int cost = (str1[i-1] == str2[j-1]) ? 0 : 1;
-            
-            dp[i][j] = min({dp[i-1][j] + 1,
-                            dp[i][j-1] + 1,
-                            dp[i-1][j-1] + cost
-                            });
+    for (int i = 1; i <= len1; ++i) {
+        for (int j = 1; j <= len2; ++j) {
+            if (str1[i-1] == str2[j-1]) 
+                dp[i][j] = dp[i-1][j-1];
+            else
+                dp[i][j] = 1 + min({dp[i-1][j],
+                                    dp[i][j-1],
+                                    dp[i-1][j-1]
+                                    });
         }
     }
 
