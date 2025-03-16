@@ -14,7 +14,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     for (int i = 0; i <= len1; ++i) dp[i][0] = i;
     for (int j = 0; j <= len2; ++j) dp[0][j] = j;
 
-    int cost = 0
+    int cost = 0;
 
     for (int i = 1; i <= len2; ++i) {
         for (int j = 1; j <= len1; ++j) {
