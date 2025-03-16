@@ -12,9 +12,7 @@ bool is_adjacent(const string& word1, const string& word2) {
     size_t str1len = word1.length();
     size_t str2len = word2.length();
 
-    if (word1 == word2) 
-        return true;
-    else if (str1len == str2len) {
+    if (str1len == str2len) {
         return find_difference(str1len, word1, word2) <= 1;
     } else if (str1len == str2len + 1) { // word1 longer
         return find_difference_different_lengths(word2, word1) <= 1;
@@ -53,8 +51,33 @@ int find_difference_different_lengths(const string& shorter, const string& longe
 }
 
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list) {
-    if (begin_word == end_word) return {begin_word};
+    if (begin_word == end_word) 
+        Error(begin_word, end_word, "Begin and end are the same.");
 
+    queue<vector<string>> lq;
+    lq.push(begin_word);
+
+    set<string> visited;
+    visited.insert(begin_word);
+
+    while (!lq.empty()) {
+        vector<string> ladder = lq.front();
+        lq.pop();
+        string last = ladder.back();
+        for (const string& word : word_list) {
+            if (is_adjacent(last, word) && visited.find(word) == visited.end()) {
+                visited.insert(word);
+                vector<string> new_ladder = ladder;
+                new_ladder.push_back(word);
+
+                if (word == end_word)
+                    return new_ladder;
+
+                lq.push(new_ladder);
+            }
+        }
+    }
+    return {};
 }
 
 void load_words(set<string> & word_list, const string& file_name) {
